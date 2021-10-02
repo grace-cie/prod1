@@ -9,6 +9,7 @@ body{
     font-size: 19px;
     font-family: arial;
     font-weight: inherit;
+    padding-top: 52px;
 }
 .x_container {
     position: relative;

@@ -9,32 +9,32 @@
 <p class="headtitle">Student Form</p>
     <?php
         if(isset($_GET['submit'])){
-            echo "Last Name: ".$_GET['lname'].'<p>'.'<br />';
-            echo "First Name: ".$_GET['fname'].'<p>'.'<br />';
-            echo "Middle Initial: ".$_GET['middle'].'<p>'.'<br />';
+            echo "<b>Last Name: </b> ".$_GET['lname'].'<p>'.'<br />';
+            echo "<b>First Name: </b>".$_GET['fname'].'<p>'.'<br />';
+            echo "<b>Middle Initial: </b>".$_GET['middle'].'<p>'.'<br />';
             if(!empty($_GET['course'])){
                 foreach($_GET['course'] as $selected) {
-                    echo "Course: ".$selected."<br>";
+                    echo "<b>Course: </b>".$selected."<p>"."<br>";
                 }
             }
             if(!empty($_GET['yrlvl'])){
                 foreach($_GET['yrlvl'] as $selected) {
-                    echo "Year Level: ".$selected."<br>";
+                    echo "<b>Year Level: </b>".$selected."<p>"."<br>";
                 }
             }
             if(!empty($_GET['gender'])){
                 foreach($_GET['gender'] as $selected) {
-                    echo "Gender: ".$selected."<br>";
+                    echo "<b>Gender: </b>".$selected."<p>"."<br>";
                 }
             }
             if(!empty($_GET['status'])){
                 foreach($_GET['status'] as $selected) {
-                    echo "Gender: ".$selected."<br>";
+                    echo "<b>Gender: </b>".$selected."<p>"."<br>";
                 }
             }
-            echo "Fathers Name: ".$_GET['fathname'].'<p>'.'<br />';
-            echo "Mothers Name: ".$_GET['modname'].'<p>'.'<br />';
-            echo "Phone Number: ".$_GET['phonenum'].'<p>'.'<br />';
+            echo "<b>Fathers Name: </b>".$_GET['fathname'].'<p>'.'<br />';
+            echo "<b>Mothers Name: </b>".$_GET['modname'].'<p>'.'<br />';
+            echo "<b>Phone Number: </b>".$_GET['phonenum'].'<p>'.'<br />';
         }
     ?> 
 </div>
