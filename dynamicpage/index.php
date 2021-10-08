@@ -1,26 +1,21 @@
 <?php
     $page = (isset($_GET['page']) &&  !empty($_GET['page']) ? $_GET['page'] : '');
     $file = "";
-        switch ($page) {
-            
+    if ($page == 'about'){
+        $file = "pages/about.php";
+    }
 
-            case 'services':
-                $file = "pages/services.php";
-            break;
+    else if ($page == 'contact'){
+        $file = "pages/contact.php";
+    }
 
-            case 'contact':
-                $file = "pages/contact.php";
-            break;
+    else if ($page == 'services'){
+        $file = "pages/services.php";
+    }
 
-            case 'about':
-                $file = "pages/about.php";
-            break;
-
-            default:
-                $file = "pages/home.php";
-            break;
-                
-        }
-
+    else {
+        $file = "pages/home.php";
+    }
+    
     include "templates/content.php"; //content
 ?>
