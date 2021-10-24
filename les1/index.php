@@ -10,6 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .mess{
+
+    }
+</style>
 <body>
 
     <!-- Sign up system -->
@@ -18,17 +23,23 @@
     <br>
     <input type="text" name="last" placeholder="LastName" required>
     <br>
-    <input type="text" name="email" placeholder="Email" required>
+    <input type="email" name="email" placeholder="Email" required>
     <br>
     <input type="text" name="uid" placeholder="UserName" required>
     <br>
-    <input type="password" name="pwd" placeholder="Password" required>
+    <input type="password" name="pwd" minlength="8" placeholder="Password" required>
     <br>
     <button type="submit">Sign Up!</button>
 </form>
 
 
 <?php
+    $fullUrl = "http//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    if(strpos($fullUrl, "signup=sucess") == true){
+        echo "<p style='color: green; font-weight: bold;'>Sign up sucess</p>";
+    }
+
 /*
     #select data from inside the database in saferway prepared statements
     $data = "Admin";
