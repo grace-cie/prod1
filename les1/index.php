@@ -1,23 +1,15 @@
 <?php
     include_once 'includes/dbhandler.php';
+    
+    require "header.php"
+    
 ?>
+<main>
+    <p>You are logged in</p>
+    <p>You are logged out</p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    .mess{
 
-    }
-</style>
-<body>
-
-    <!-- Sign up system -->
+    <!-- Sign up system 
 <form action="includes/signup.php" method="POST">
     <input type="text" name="first" placeholder="FirstName" required>
     <br>
@@ -31,16 +23,18 @@
     <br>
     <button type="submit">Sign Up!</button>
 </form>
-
+-->
 
 <?php
+
+/*  when sucess signup
     $fullUrl = "http//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
     if(strpos($fullUrl, "signup=sucess") == true){
         echo "<p style='color: green; font-weight: bold;'>Sign up sucess</p>";
     }
 
-/*
+
     #select data from inside the database in saferway prepared statements
     $data = "Admin";
     $sql = "SELECT * FROM users WHERE user_uid=?";
@@ -79,6 +73,9 @@
             
     }
     */
-?>    
-</body>
-</html>
+?>
+
+<?php
+    require "footer.php";
+?>
+</main>

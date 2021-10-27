@@ -1,0 +1,96 @@
+body{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    background: #f1f1f1;
+    transition: background-color .5s;
+}
+nav {
+    background: #caebf2;
+    padding-top: 1px;
+    height: 140px;
+}
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 36px;
+    font-family: monospace;
+    background: #ff3b3f;
+    padding: 20px 15px 20px 15px;
+    border-radius: 5px;
+    position: absolute;
+    right: 27px;
+    top: 27px;
+}
+.sidenav {
+    height: 100%;
+    width: 400px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #caebf2;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .cbtnContainer {
+    color: red;
+    font-weight: bold;
+    background: white;
+    border-radius: 28px;
+    font-size: 49px;
+    position: relative;
+    top: 33px;
+    right: -31px;
+  }
+  
+  .sidenav a {
+    padding: 20px 32px 20px 32px;
+    text-decoration: none;
+    font-size: 54px;
+    color: #818181;
+    display: block;
+    transition: 0.1s;
+    font-family: 'Public Sans', sans-serif;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: -6px;
+    right: -19px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #2222;
+    border-radius: 38px;
+    height: 58px;
+  }
+  .snav-wrapper {
+    position: absolute;
+    top: 321px;
+    right: 89px;
+}
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  .user-img-container {
+    position: absolute;
+    top: -248px;
+    left: 125px;
+    }
+  .user-img-container h1 {
+      font-family: 'Public Sans', sans-serif;
+      font-size: 33px;
+  }
