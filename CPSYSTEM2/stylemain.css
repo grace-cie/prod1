@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@700&display=swap');
 body{
     padding: 0;
     margin: 0;
@@ -16,7 +17,7 @@ nav a {
     text-decoration: none;
     color: #fff;
     font-size: 36px;
-    font-family: monospace;
+    font-family: 'Public Sans', sans-serif;
     background: #ff3b3f;
     padding: 20px 15px 20px 15px;
     border-radius: 5px;

@@ -23,7 +23,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                <center><h1><?php echo $_SESSION['name']; ?></h1></center>
           </div>
                <a href="#">List</a>
-               <a href="#">Add users</a>
+               <a href="signupform.php">Add users</a>
           </section>
      </div>
 </body>
