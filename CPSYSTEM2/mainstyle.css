@@ -5,7 +5,7 @@ body{
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
-    background: #f1f1f1;
+    background: #efefef;
     transition: background-color .5s;
 }
 nav {
@@ -27,7 +27,7 @@ nav a {
 }
 .sidenav {
     height: 100%;
-    width: 400px;
+    width: 487px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -89,9 +89,54 @@ nav a {
   .user-img-container {
     position: absolute;
     top: -248px;
-    left: 125px;
+    left: 167px;
     }
   .user-img-container h1 {
       font-family: 'Public Sans', sans-serif;
       font-size: 33px;
   }
+  .tit-holder{
+    width: 100%;
+    text-align: center;
+    font-size: 47px;
+    font-family: 'Public Sans', sans-serif;
+    background: #96cbbb;
+    color: #f1f1f1;
+  }
+  table, tr, td {
+    text-align: center;
+  }
+  table, tr, th, td {
+    border-collapse: collapse;
+    font-size: 34px;
+    border: 4px solid #222;
+    font-family: 'Public Sans', sans-serif;
+    }
+    .pname-s {
+        background: #caebf2;
+        color: #818181;
+    }
+    .oprt-btn {
+        text-decoration: none;
+        color: #f1f1f1;
+    }
+    .btn-wrapper-ed {
+    background: #96cbbb;
+    }
+  .btn-wrapper-del {
+    background: #ff3b3f;
+  }
+    .title {
+        text-align: center;
+        border: none;
+    }
+    .edit-btn {
+        text-align: center;
+        height: 58px;
+        width: 100%;
+        font-size: 26px;
+        background: #ff3b3f;
+        border: none;
+        font-family: 'Public Sans', sans-serif;
+        color: white;
+    }
