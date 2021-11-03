@@ -4,12 +4,14 @@ session_start();
 if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
 require "dbhandler.php"; 
- ?>
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>HOME</title>
-	<link rel="stylesheet" type="text/css" href="mainstyle.css">
+	<link rel="stylesheet" type="text/css" href="stylemain.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
      <nav>
@@ -27,14 +29,20 @@ require "dbhandler.php";
                <a href="addproducts.php">Add Product</a>
           </section>
      </div>
-     <section class="tit-holder">Table</section>
-     <table style="width: 100%;">
+     <section class="tit-holder">
+          <div class="srch-holder" style="position: absolute; left: -39px;">
+               <i class="search fa fa-search"></i>
+               <input type="text" name="srch" id="srch" class="srch-nav" placeholder="Search">
+               <span class="tot-val" id="tot-val" style ="font-size: 32px; padding-left: 156px;"></span>
+          </div>
+     </section>
+     <table style="width: 100%;" id="prod-table">
           <tr>
                <th>Roll</th>
                <th>Product Name</th>
                <th>Price</th>
                <th>Quantity</th>
-               <th>Total</th>
+               <th>Total ₱</th>
                <th colspan="2">&nbsp;Operations</th>
           </tr>
      <?php
@@ -52,15 +60,55 @@ require "dbhandler.php";
                     <td class="pname-s"><?php echo $row['prod_name']?></td>
                     <td><?php echo "₱".$row['prod_price']?></td>
                     <td><?php echo $row['prod_qnty']."pcs"?></td>
-                    <td><?php echo "₱".$row['prod_price'] * $row['prod_qnty']?></td>
-                    <?php echo " <td class='btn-wrapper-ed'><a class='oprt-btn' href='update.php?edit&prod_id={$id}'>Update</a></td>";?>
-                    <?php echo " <td class='btn-wrapper-del'><a class='oprt-btn' href='delete.php?delete={$id}'>Delete</a></td>";?>
+                    <td id="total"><?php echo $row['prod_price'] * $row['prod_qnty']?></td>
+                    <td class='btn-wrapper-ed'><?php echo " <a class='oprt-btn' href='update.php?edit&prod_id={$id}'>Update</a>";?></td>
+                    <td class='btn-wrapper-del'><?php echo " <a class='oprt-btn' href='delete.php?delete={$id}'>Delete</a>";?></td>
                </tr>
                <?php
            }
      ?>
      </table>
 </body>
+<script>
+          updateSubTotal(); // Initial call
+
+          function updateSubTotal() {
+          var table = document.getElementById("prod-table");
+          let subTotal = Array.from(table.rows).slice(4).reduce((total, row) => {
+          return total + parseFloat(row.cells[4].innerHTML);
+          }, 0);
+          document.getElementById("tot-val").innerHTML = "Total: ₱ " + subTotal.toFixed(2);
+          }
+
+          function onClickRemove(deleteButton) {
+          let row = deleteButton.parentElement.parentElement;
+          row.parentNode.removeChild(row);
+          updateSubTotal(); // Call after delete
+          }
+</script>
+<script>
+     //search func
+     $(document).ready(function(){
+          $('#srch').keyup(function(){
+               search_table($(this).val());
+          });
+          function search_table(value){
+               $('#prod-table tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                         if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >=0 ) {
+                              found = 'true'
+                         }
+                    });
+                    if(found == 'true'){
+                         $(this).show();
+                    } else {
+                         $(this).hide();
+                    }
+               });
+          }
+     });
+</script>
 <script>
      //side nav func
      function openNav() {

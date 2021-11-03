@@ -1,3 +1,10 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
+require "dbhandler.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +73,7 @@
             <form action="addpross.php" method="POST">
                     <h2>Add Products</h2>
                     <input type="text" name="prod-name" placeholder="Product Name" >
-                    <input type="number" name="prod-price" placeholder="Price">
+                    <input type="number" name="prod-price" step="any" placeholder="Price">
                     <input type="number" name="prod-qnty" placeholder="Quantity">
                     <br>
                     <input type="submit" name="addprod-submit" value="Add">
@@ -78,3 +85,9 @@
 </body>
 </center>
 </html>
+<?php 
+   } else {
+        header("Location: index.php");
+        exit();
+    }
+ ?>

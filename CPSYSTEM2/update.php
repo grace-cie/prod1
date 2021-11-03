@@ -1,5 +1,12 @@
 <!-- Footer -->
-<?php include "dbhandler.php"?>
+<?php 
+
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
+require "dbhandler.php"; 
+include "dbhandler.php"?>
 
 <?php
    // checking if the variable is set or not and if set adding the set data value to variable userid
@@ -106,7 +113,7 @@
   <h1 class="text-center">Update Product</h1>
     <form action="" method="post">
         <input type="text" name="pname-inpt"  value="<?php echo $pname  ?>">
-        <input type="number" name="pprice-inpt" value="<?php echo $pprice  ?>">
+        <input type="number" name="pprice-inpt" step="any" value="<?php echo $pprice  ?>">
         <input type="number" name="pqnty-inpt" value="<?php echo $pqnty  ?>">
         <input type="submit"  name="update" value="Update">
     </form>    
@@ -117,3 +124,9 @@
       <a href="home.php"> Back </a>
     <div>
 </center>
+<?php 
+   } else {
+        header("Location: index.php");
+        exit();
+    }
+ ?>

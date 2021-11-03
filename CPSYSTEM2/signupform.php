@@ -1,3 +1,9 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +18,12 @@
 		background: #f1f1f1;
 	}
     .wrapper-main {
-    background: #caebf2;
-    height: 394px;
-    width: 435px;
-    border-radius: 14px;
-    position: relative;
-    top: 410px;
+        background: #caebf2;
+        height: 394px;
+        width: 435px;
+        border-radius: 14px;
+        position: relative;
+        top: 332px;
     }
     .addform {
         position: inherit;
@@ -69,11 +75,17 @@
 		font-size: 36px;
     	color: #a9a9a9;
 	}
+    img[name="back-btn"]{
+        position: absolute;
+        height: 51px;
+        top: -60px;
+        right: 1px;
+    }
 </style>
 <center>
 <body>
     <div class="wrapper-main">
-            <!-- Sign up system -->
+            <a href="home.php"><img name="back-btn" src="img/icons/close-btn.png" alt="Back"></a>
             <form class="addform" action="signup.php" method="POST">
             <h2>Add User</h2>
                 <input type="text" name="name" placeholder="Name" >
@@ -89,3 +101,9 @@
 </body>
 </center>
 </html>
+<?php 
+   } else {
+        header("Location: index.php");
+        exit();
+    }
+ ?>

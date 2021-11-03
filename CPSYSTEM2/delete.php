@@ -1,4 +1,4 @@
-<?php  require "dbhandler.php" ?>
+<?php require "dbhandler.php" ?>
 
 <?php 
      if(isset($_GET['delete']))
