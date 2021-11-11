@@ -7,13 +7,16 @@ if (isset($_POST['addprod-submit'])){
     //$userpwd = $_POST['pwd'];
 
     $prodname = $_POST['prod-name'];
-    $prodprice = $_POST['prod-price'];
-    $prodqnty = $_POST['prod-qnty'];
+    $prodwhlprice = $_POST['prod-price-whl'];
+    $prodqnt = $_POST['prod-qnt'];
+
+    $prodretprice = $_POST['prod-price-ret']; //$prodprice
+    $prodstck = $_POST['prod-stck']; //$prodqnty
     
    
     #error handler
-    if (empty($prodname) || empty($prodprice)  || empty($prodqnty)){
-        header("Location: addproducts.php?error=Empty fields&prods".$prodprice."&name".$prodname);
+    if (empty($prodname) || empty($prodretprice)  || empty($prodstck) || empty($prodwhlprice) || empty($prodqnt)){
+        header("Location: addproducts.php?error=Empty fields&prods".$prodretprice.$prodwhlprice."&name".$prodname);
         exit();
     } else { #insert data in database
         $sql = "SELECT id FROM productss WHERE id=?";
@@ -22,7 +25,7 @@ if (isset($_POST['addprod-submit'])){
             header("Location: addproducts.php?error=sqlerror");
             exit();
         } else { //add data to database func
-            mysqli_stmt_bind_param($stmt, "s", $prodprice);
+            mysqli_stmt_bind_param($stmt, "s", $prodretprice); //
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
 
@@ -31,14 +34,14 @@ if (isset($_POST['addprod-submit'])){
                 header("Location: addproducts.php?error=prodtaken&name=".$prodname);
                 exit();
             } else { 
-                $sql = "INSERT INTO productss (prod_name, prod_price, prod_qnty) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO productss (prod_name, prod_retail, prod_stock, prod_whlsale, prod_qnt) VALUES (?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)){
                     header("Location: addproducts.php?error=sqlerror");
                     exit();
                 } else {
                     //$hashedPwd = password_hash($password, PASSWORD_DEFAULT); //create hash pass
-                    mysqli_stmt_bind_param($stmt, "sss", $prodname, $prodprice, $prodqnty);
+                    mysqli_stmt_bind_param($stmt, "sssss", $prodname, $prodretprice, $prodstck, $prodwhlprice, $prodqnt);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
                     header("Location: addproducts.php?addproduct=sucess");

@@ -14,14 +14,20 @@ require "dbhandler.php";
     <title>Document</title>
 </head>
 <style>
+    body {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        list-style: none;
+    }
     @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@700&display=swap');
     .wrapper-main {
         background: #caebf2;
-        height: 394px;
+        height: 517px;
         width: 435px;
         border-radius: 14px;
         position: relative;
-        top: 327px;
+        top: 216px;
     }
     input[name="prod-name"]::placeholder {        
 		text-align: center;
@@ -37,6 +43,7 @@ require "dbhandler.php";
         border: none;
         text-align: center;
         font-family: 'Public Sans', sans-serif;
+        margin-top: 7px;
     }
     h2 {
         padding-top: 36px;
@@ -54,7 +61,7 @@ require "dbhandler.php";
     }
     input[name="addprod-submit"]{
         position: relative;
-        top: 22px;
+        top: 8px;
         width: 70%;
         background: #ff3b3f;
         color: #ffffff;
@@ -73,8 +80,11 @@ require "dbhandler.php";
             <form action="addpross.php" method="POST">
                     <h2>Add Products</h2>
                     <input type="text" name="prod-name" placeholder="Product Name" >
-                    <input type="number" name="prod-price" step="any" placeholder="Price">
-                    <input type="number" name="prod-qnty" placeholder="Quantity">
+                    <input type="number" name="prod-price-whl" step="any" placeholder="Wholesale Price">
+                    <input type="number" name="prod-qnt" placeholder="Quantity">
+
+                    <input type="number" name="prod-price-ret" step="any" placeholder="Retail Price">
+                    <input type="number" name="prod-stck" placeholder="Stock">
                     <br>
                     <input type="submit" name="addprod-submit" value="Add">
             </form>

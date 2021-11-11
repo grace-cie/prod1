@@ -4,7 +4,7 @@ $host= "localhost";
 $username= "root";
 $password = "";
 
-$db_name = "login_system";
+$db_name = "tst_sys";
 
 $conn = mysqli_connect($host, $username, $password, $db_name);
 

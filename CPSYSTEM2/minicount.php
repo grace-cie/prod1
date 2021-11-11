@@ -23,9 +23,6 @@ include "dbhandler.php";
         {              
           $id = $row['id'];                
           $pname = $row['prod_name'];
-          $pwhlprice = $row['prod_whlsale'];         
-          $pqnt = $row['prod_qnt']; 
-
           $pretprice = $row['prod_retail']; //$pprice     //prod_price      
           $pstck = $row['prod_stock']; //$pqnty        //prod_qnty
         }
@@ -34,14 +31,11 @@ include "dbhandler.php";
     if(isset($_POST['update'])) 
     {
       $pname = $_POST['pname-inpt'];
-      $pwhlprice = $_POST['pwhlprice-inpt'];
-      $pqnt = $_POST['pqnt-inpt'];
-
       $pretprice = $_POST['pretprice-inpt'];
       $pstck = $_POST['pstck-inpt'];
       
       // SQL query to update the data in user table where the id = $userid 
-      $query = "UPDATE productss SET prod_name = '{$pname}' , prod_retail = '{$pretprice}' , prod_stock = '{$pstck}' , prod_whlsale = '{$pwhlprice}' , prod_qnt = '{$pqnt}' WHERE id = $prodid";
+      $query = "UPDATE productss SET prod_name = '{$pname}' , prod_retail = '{$pretprice}' , prod_stock = '{$pstck}' WHERE id = $prodid";
       $update_prod = mysqli_query($conn, $query);
       //echo "<script type='text/javascript'>alert('User data updated successfully!')</script>";
       header("Location: home.php?update=sucess");
@@ -50,6 +44,7 @@ include "dbhandler.php";
 ?>
 <head>
   <title>Update Product</title>
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 </head>
 <style>
    body{
@@ -76,6 +71,9 @@ include "dbhandler.php";
 	}input[name="pstck-inpt"]::placeholder {        
 		text-align: center;
 	}
+  input[name="opr-sub"]{
+    margin-top: 121px;
+  }
 	input {
 		height: 70px;
 		width: 69%;
@@ -89,7 +87,7 @@ include "dbhandler.php";
 		height: 60px;
 		width: 70%;
 		position: relative;
-		top: 24px;
+		top: 7px;
 		border: none;
 		background: #ff3b3f;
 		color: #ffffff;
@@ -104,18 +102,27 @@ include "dbhandler.php";
 }
 
 </style>
+<script>
+    $(document).ready(function() {
+          const def = $("#stock").val()
+          $("#sold,#stock").keyup(function() {
+              var total = 0;
+              var x = Number($("#sold").val());
+              var total = def - x;
+              $("#stock").val(total); // the result will be showed in "quantity"
+          });
+    });
+</script>
 <center>
   <div class="main-container">
     <a href="home.php"><img name="back-btn" src="img/icons/close-btn.png" alt="Back"></a>
   <h1 class="text-center">Update Product</h1>
     <form action="" method="post">
-        <input type="text" name="pname-inpt"  value="<?php echo $pname  ?>">
-        <input type="number" name="pwhlprice-inpt" step="any" value="<?php echo $pwhlprice  ?>">
-        <input type="number" name="pqnt-inpt" step="any" value="<?php echo $pqnt  ?>">
-
+        <input type="text" name="pname-inpt"  value="<?php echo $pname  ?>" readonly>
         <input type="number" name="pretprice-inpt" step="any" value="<?php echo $pretprice  ?>">
-        <input type="number" name="pstck-inpt" value="<?php echo $pstck  ?>">
-        <input type="submit"  name="update" value="Update">
+        <input type="number" name="pstck-inpt" id="stock" value="<?php echo $pstck  ?>" readonly>
+        <input type="number" name="opr-sub" class="sold-inpt" id="sold" placeholder="Qnty of Sold">
+        <input type="submit"  name="update" value="Sold">
     </form>    
   </div>
 
