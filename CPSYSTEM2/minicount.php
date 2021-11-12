@@ -33,17 +33,24 @@ include "dbhandler.php";
       $pname = $_POST['pname-inpt'];
       $pretprice = $_POST['pretprice-inpt'];
       $pstck = $_POST['pstck-inpt'];
+
+      $solds = $_POST['sold'];
+      $trans = $_POST['dateoftrans'];
+      $tot = $_POST['total'];
       
       // SQL query to update the data in user table where the id = $userid 
       $query = "UPDATE productss SET prod_name = '{$pname}' , prod_retail = '{$pretprice}' , prod_stock = '{$pstck}' WHERE id = $prodid";
+
+      $squery = "INSERT INTO trans (prod_name, coutof_sold, date_sold, total) VALUES ('$pname','$solds','$trans','$tot')";
       $update_prod = mysqli_query($conn, $query);
+      $insert_trans = mysqli_query($conn, $squery);
       //echo "<script type='text/javascript'>alert('User data updated successfully!')</script>";
       header("Location: home.php?update=sucess");
       exit();
     }             
 ?>
 <head>
-  <title>Update Product</title>
+  <title>Sold Product</title>
   <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 </head>
 <style>
@@ -52,11 +59,11 @@ include "dbhandler.php";
 	}
   .main-container {
 		background: #caebf2;
-    height: 662px;
+    height: 1020px;
 		width: 600px;
 		border-radius: 14px;
 		position: relative;
-		top: 410px;
+		top: 223px;
 	}
   .main-container h1{
     padding-top: 39px;
@@ -70,6 +77,8 @@ include "dbhandler.php";
 		text-align: center;
 	}input[name="pstck-inpt"]::placeholder {        
 		text-align: center;
+	}input[name="total"]::placeholder {        
+		text-align: center;
 	}
   input[name="opr-sub"]{
     margin-top: 121px;
@@ -82,6 +91,7 @@ include "dbhandler.php";
 		text-align: center;
 		font-family: 'Public Sans', sans-serif;
     margin-top: 8px;
+    outline: none;
 	}
   input[name="update"]{
 		height: 60px;
@@ -100,6 +110,11 @@ include "dbhandler.php";
     top: -70px;
     right: 1px;
 }
+  label {
+    font-size: 39px;
+    font-family: 'Public Sans', sans-serif;
+    color: #a9a9a9;
+  }
 
 </style>
 <script>
@@ -111,17 +126,33 @@ include "dbhandler.php";
               var total = def - x;
               $("#stock").val(total); // the result will be showed in "quantity"
           });
+          
+          $("#sold,#pretprice-inpt").keyup(function() {
+              var totalq = 0;
+              var a = Number($("#sold").val());
+              var b = Number($("#pretprice-inpt").val());
+              var totalq = a * b;
+              $("#total").val(totalq); 
+          });
     });
 </script>
 <center>
   <div class="main-container">
     <a href="home.php"><img name="back-btn" src="img/icons/close-btn.png" alt="Back"></a>
-  <h1 class="text-center">Update Product</h1>
+  <h1 class="text-center">Sold Product</h1>
     <form action="" method="post">
-        <input type="text" name="pname-inpt"  value="<?php echo $pname  ?>" readonly>
-        <input type="number" name="pretprice-inpt" step="any" value="<?php echo $pretprice  ?>">
-        <input type="number" name="pstck-inpt" id="stock" value="<?php echo $pstck  ?>" readonly>
-        <input type="number" name="opr-sub" class="sold-inpt" id="sold" placeholder="Qnty of Sold">
+        <label for="pname-inpt">Product Name</label><br>
+        <input type="text" name="pname-inpt"  value="<?php echo $pname  ?>" readonly><br>
+        <label for="pretprice-inpt">Retail Price</label><br>
+        <input type="number" name="pretprice-inpt" id="pretprice-inpt" step="any" value="<?php echo $pretprice  ?>" readonly><br>
+        <label for="pstck-inpt">Stock Available</label><br>
+        <input type="number" name="pstck-inpt" id="stock" value="<?php echo $pstck  ?>" readonly><br>
+        <label for="dateoftrans">Date of Transaction</label><br>
+        <input type="datetime-local" name="dateoftrans" style="font-size: 34px;"><br>
+        <label for="total">Total</label><br>
+        <input type="text" name="total" id="total" placeholder="Total Retail" value="0" readonly><br>
+        <label for="sold">Qnty of Sold</label><br>
+        <input type="number" name="sold" class="sold-inpt" id="sold" placeholder="Quantity">
         <input type="submit"  name="update" value="Sold">
     </form>    
   </div>

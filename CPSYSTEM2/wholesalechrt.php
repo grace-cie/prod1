@@ -25,7 +25,7 @@ require "dbhandler.php";
                <img  src="img/icons/user.png" alt="user">
                <center><h1><?php echo $_SESSION['name']; ?></h1></center>
           </div>
-               <a href="home.php">Prices</a>
+               <a href="home.php">Products</a>
                <a href="dashb.php">Retail</a>
                <a href="wholesalechrt.php">Wholesale</a>
                <a href="addproducts.php">Add Product</a>
